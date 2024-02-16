@@ -1489,7 +1489,7 @@ if ( sleep_time &gt; 0 ) {
                     <elementProp name="cql" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">true</boolProp>
                       <stringProp name="Argument.name">cql</stringProp>
-                      <stringProp name="Argument.value">siteSearch~${p_search_term}</stringProp>
+                      <stringProp name="Argument.value">siteSearch~'${p_search_term}'</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     </elementProp>
@@ -1560,10 +1560,8 @@ if ( sleep_time &gt; 0 ) {
                   <stringProp name="parameters"></stringProp>
                   <stringProp name="filename"></stringProp>
                   <stringProp name="cacheKey">true</stringProp>
-                  <stringProp name="script">
-                     def phrases = [&quot;confluence test start&quot;, &quot;jira cloud test&quot;, &quot;how create something&quot;, &quot;test demo search performance&quot;, &quot;amazing starting priority monumental&quot;]
-                     vars.put(&quot;p_search_term&quot;, new Random().with {phrases[nextInt(phrases.size)]})
-                  </stringProp>
+                  <stringProp name="script">vars.put(&quot;p_search_term&quot;, (new Random().with {(1..5).collect {((&apos;a&apos;..&apos;z&apos;)).join()[ nextInt(((&apos;a&apos;..&apos;z&apos;)).join().length())]}.join()}).toString());
+</stringProp>
                 </JSR223PreProcessor>
                 <hashTree/>
               </hashTree>
